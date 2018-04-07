@@ -1,0 +1,47 @@
+{
+  "name": "seagull",
+  "description": "seagull",
+  "author": "Caldis",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "cross-env": "^5.1.4",
+    "electron-is-dev": "^0.3.0",
+    "electron-log": "^2.2.14",
+    "electron-updater": "^2.21.4",
+    "node-notifier": "^5.2.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "electron": "^1.8.4",
+    "electron-builder": "^20.8.1",
+    "prettier": "^1.11.1",
+    "react-scripts": "^1.1.4",
+    "wait-on": "^2.1.0"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "build": {
+    "appId": "com.caldis.seagull",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "yarn build && build --c.extraMetadata.main=build/electron.js"
+  },
+  "scripts-nouse": {
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
